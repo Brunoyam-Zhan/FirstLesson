@@ -71,40 +71,40 @@
 
 
 
-users = {"admin": "1234"}
-secret_info = "42"
-
-def login():
-    login = input("Введите логин: ")
-    password = input("Введите пароль: ")
-
-    if login in users.keys():
-        if users[login] == password:
-            print("Успешный вход!")
-            print(secret_info)
-
-def register():
-    login = input("Введите логин: ")
-    password = input("Введите пароль: ")
-    if login in users.keys():
-        print("Логин занят")
-    else:
-        users[login] = password
-        print("Регистрация прошла успешно!")
-
-def error():
-    print("Данные введены не верно (Нужно Вход/Регистрация)")
-
-
-while True:
-    q1 = input("Вход или регистрация? ")
-    if q1 == "Вход":
-        login()
-        break
-    elif q1 == "Регистрация":
-        register()
-    else:
-        error()
+# users = {"admin": "1234"}
+# secret_info = "42"
+#
+# def login():
+#     login = input("Введите логин: ")
+#     password = input("Введите пароль: ")
+#
+#     if login in users.keys():
+#         if users[login] == password:
+#             print("Успешный вход!")
+#             print(secret_info)
+#
+# def register():
+#     login = input("Введите логин: ")
+#     password = input("Введите пароль: ")
+#     if login in users.keys():
+#         print("Логин занят")
+#     else:
+#         users[login] = password
+#         print("Регистрация прошла успешно!")
+#
+# def error():
+#     print("Данные введены не верно (Нужно Вход/Регистрация)")
+#
+#
+# while True:
+#     q1 = input("Вход или регистрация? ")
+#     if q1 == "Вход":
+#         login()
+#         break
+#     elif q1 == "Регистрация":
+#         register()
+#     else:
+#         error()
 
 
 
