@@ -8,6 +8,10 @@
 
 import json
 
+# with open('test1.json', "r") as  f:
+#     menu = json.load(f)
+
+
 def load_menu():
     f = open('test1.json', "r")
     menu = json.load(f)
@@ -95,9 +99,8 @@ if __name__ == "__main__":
 
 
 
-
-
-
 # list_keys = list(menu.keys())
 # list_keys_string = ', '.join(list.keys)
 # print(list_keys_string)
+
+
