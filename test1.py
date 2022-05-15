@@ -38,7 +38,6 @@
 # def factorial(n):
 #     if n == 0:
 #         return 1
-#
 #     return n * factorial(n+1)
 #
 # factorial(1)
@@ -64,21 +63,47 @@
 
 
 
-
-
-
-
-
-
-a = 6
-b = 4
-
-if a > b:
-    c = 6
-else:
-    c = 5
-
 # c = 6 if a > b else 5
+
+
+
+# def factorial (n):
+#     return 1 if n == 0 else factorial(n-1) * n
+#
+# print (factorial(4))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
