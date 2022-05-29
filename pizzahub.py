@@ -1,106 +1,83 @@
 # 1) Аминистратор управляет меню (добавляет пиццу в меню, удаляет пиццу из меню)
 # 2) Пользватель делает заказ(выбирает из меню пиццы, автоматически рассчитывается стоимость заказа)
 
-# menu = {
-#     'margarite': 400,
-#     'pepperone': 600,
-# }
-
 import json
 
-# with open('test1.json', "r") as  f:
-#     menu = json.load(f)
 
 
-def load_menu():
-    f = open('test1.json', "r")
-    menu = json.load(f)
-    f.close()
-    return menu
+class Pizzeria:
 
-def save_menu(menu):
-    f = open('test1.json', "w")
-    json.dump(menu, f)
-    f.close()
+    @staticmethod
+    def load_menu():
+        with open('menu.json', 'r') as f:
+            menu = json.load(f)
+            return menu
+    @staticmethod
+    def __save_menu(menu):
+        with open('menu.json', 'w') as f:
+            json.dump(menu, f)
 
-
-
-def add_pizza(name, price):
-    menu = load_menu()
-    if name in menu.keys():
-        print("Пицца c таким именем уже есть в меню. Придумайте другое название")
-    else:
-        menu[name] = price
-
-    save_menu(menu)
-
-
-def remove_pizza(name):
-    menu = load_menu()
-
-    if name in menu.keys():
-        print("Пицца c таким именем уже есть в меню. Удаляем")
-        del menu[name]
-    else:
-        print("Пицца c таким именем нет  в меню. Удалять нечего")
-
-    save_menu(menu)
-
-
-def order_pizza():
-
-    menu = load_menu()
-
-    order = []
-    cost = 0
-
-    save_menu(menu)
-
-    while True:
-        q1 = input("Продолжим? ")
-        if q1 == "нет":
-            break
+    def add_pizza(self, name, price):
+        menu = self.load_menu()
+        if name in menu.keys():
+            print('already there is')
         else:
-            print("Наше меню: ")
-            print(menu)
-            pizza_name = input("Какую пиццу заказываем? ")
-            if pizza_name in menu.keys():
-                order.append(pizza_name)
-                cost += menu[pizza_name]
-                print("Пицца добавлено в заказ")
-                print("Сумма в корзине: {} " .format(cost))
+            menu[name] = price
+        self.__save_menu(menu)
 
-    return  {"order": order, "cost": cost}
+    def remove_pizza(self, name):
+        menu = self.load_menu()
+        if name in menu.keys():
+            print('delete')
+            del menu[name]
+        else:
+            print('no pizza')
+        self.__save_menu()
+
+    def order_pizza(self):
+            menu = self.load_menu()
+            order = []
+            cost = 0
+            while True:
+                q1 = input('continue?')
+                if q1 == 'no':
+                    break
+                else:
+                    print('Our menu:')
+                    print(menu)
+                    pizza_name = input('Witch pizza?')
+                    if pizza_name in menu.keys():
+                        order.append(pizza_name)
+                        cost = cost + int(menu[pizza_name])
+                        print('Pizza added')
+                        print(cost)
+            return order, cost
+
+pizzeria = Pizzeria()
+
+
 
 if __name__ == "__main__":
     while True:
-        q3 = input("Продолжить?")
-        if q3 == "да":
-            role = input("Выберете вашу роль?")
-            if role == "Админ":
-                q2 = input("Добавить или удалить?")
-                if q2 == "Добавить":
-                    name_pizza = input("Введите имя пиццы: ")
-                    name_pizza = name_pizza.strip()
-                    price_pizza = int(input("Введите стоимость пиццы: " ))
-                    add_pizza(name_pizza, price_pizza)
-                elif q2 == "remove":
-                    name_pizza = input("Введите имя удаляемой пиццы: ")
-                    remove_pizza(name_pizza)
-
-            elif role == "Пользователь":
-                print(order_pizza())
+        q3 = input('continue?')
+        if q3 == 'yes':
+            role = input('choose role:')
+            if role == 'admin':
+                q2 = input('add or delete?')
+                if q2 == 'add':
+                    name_pizza = input('name pizza:')
+                    price_pizza = int(input('price:'))
+                    pizzeria.add_pizza(name_pizza, price_pizza)
+                elif q2 == 'delete':
+                    name_pizza = input('for deleting:')
+                    pizzeria.remove_pizza(name_pizza)
+            elif role == 'user':
+                pizzeria.order_pizza()
             else:
-                print("Данные введены неверно")
-        elif q3 == "нет":
+                print('wrong')
+        elif q3 == 'no':
             break
         else:
-            print ("Ошибка ввода")
-
-
-
-# list_keys = list(menu.keys())
-# list_keys_string = ', '.join(list.keys)
-# print(list_keys_string)
+            print('mistake')
 
 
