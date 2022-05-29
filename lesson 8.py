@@ -121,8 +121,15 @@ def get_menu():
     else:
         return json.dumps(menu)
 
+@app.route('/pizzeria/menu', methods = ['POST'])
+def add_pizza():
+    data = request.form
+    pizza_name = data.get('name')
+    pizza_cost = data.get('cost')
+    pizzeria.add_pizza(pizza_name, pizza_cost)
+    return '', 201
 
 
+if __name__ == "__main__":
+    app.run(debug=True, port = 1000)
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
