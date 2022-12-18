@@ -29,7 +29,7 @@
 # search_list = [5, 7, 10, 11, 12, 15, 19, 20, 21]
 # b = [len(a)//2]
 # print(b)
-
+import os
 search_list = [5, 7, 10, 11, 12, 15, 19, 20, 21]
 
 def recoursive_binary_serach(search_list, find):
